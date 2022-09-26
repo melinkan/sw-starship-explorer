@@ -8,7 +8,7 @@ export const CardList = () => {
 
   return (
     <div className={styles.container}>
-      {starships.map((item, index) => {
+      {starships?.map((item, index) => {
         return <Card key={index} item={item} />;
       })}
     </div>

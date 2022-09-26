@@ -2,8 +2,15 @@ import React from "react";
 import styles from "./Header.module.scss";
 import { Link } from "react-router-dom";
 import starWarsLogo from "../../assets/star-wars-logo.png";
+import { useStarshipsContext } from "../../contexts/StarshipsContext";
 
 export const Header = () => {
+  const { search, setSearch } = useStarshipsContext();
+
+  const handleChange = (event) => {
+    setSearch(event.target.value);
+  };
+
   return (
     <header className={styles.base}>
       <div className={`container ${styles.container}`}>
@@ -11,20 +18,20 @@ export const Header = () => {
           <img src={starWarsLogo} alt="logo" width={100} />
         </Link>
 
-        <form>
-          <div className={styles.form}>
-            <input
-              id="search"
-              name="search"
-              className={styles.form__input}
-              type="text"
-              placeholder=" "
-            />
-            <label htmlFor="email" className={styles.form__label}>
-              Search
-            </label>
-          </div>
-        </form>
+        <div className={styles.form}>
+          <input
+            id="search"
+            name="search"
+            className={styles.form__input}
+            type="text"
+            placeholder=" "
+            value={search}
+            onChange={handleChange}
+          />
+          <label htmlFor="email" className={styles.form__label}>
+            Search
+          </label>
+        </div>
       </div>
     </header>
   );

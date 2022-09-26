@@ -14,23 +14,31 @@ export const useStarshipsContext = () => useContext(StarshipsContext);
 export const StarshipsProvider = (props) => {
   const [starships, setStarships] = useState([]);
   const [page, setPage] = useState(1);
-  const [searchQuery, setSearchQuery] = useState("");
+  const [search, setSearch] = useState("");
+  const [count, setCount] = useState(0);
 
-  const fetchStarships = useCallback(() => {
-    axios
-      .get("https://swapi.dev/api/starships", {
-        params: {
-          page,
-        },
-      })
-      .then(({ data }) => {
-        setStarships((prev) => [...prev, ...data.results]);
-      });
+  const fetchStarships = () => {
+    return axios.get("https://swapi.dev/api/starships", {
+      params: {
+        page,
+        search,
+      },
+    });
+  };
+
+  useEffect(() => {
+    fetchStarships().then(({ data }) => {
+      setStarships((prev) => [...prev, ...data.results]);
+      setCount(data.count);
+    });
   }, [page]);
 
   useEffect(() => {
-    fetchStarships();
-  }, [page]);
+    fetchStarships().then(({ data }) => {
+      setStarships(data.results);
+      setCount(data.count);
+    });
+  }, [search]);
 
   return (
     <StarshipsContext.Provider
@@ -39,8 +47,9 @@ export const StarshipsProvider = (props) => {
         setStarships,
         page,
         setPage,
-        searchQuery,
-        setSearchQuery,
+        search,
+        setSearch,
+        count,
       }}
     >
       {props.children}

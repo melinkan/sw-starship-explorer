@@ -1,11 +1,11 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { CardList, Button } from "../components";
 import { useStarshipsContext } from "../contexts/StarshipsContext";
 
 export const Home = () => {
-  const { page, setPage } = useStarshipsContext();
+  const { count, page, setPage } = useStarshipsContext();
 
-  const isLastPage = page >= 4;
+  const isLastPage = page >= count / 10;
 
   const handleLoadMore = () => {
     if (isLastPage) return;
@@ -15,7 +15,9 @@ export const Home = () => {
   return (
     <div className="container ">
       <CardList />
-      {!isLastPage && <Button onClick={handleLoadMore}>Load More</Button>}
+      {!isLastPage && count > 10 && (
+        <Button onClick={handleLoadMore}>Load More</Button>
+      )}
     </div>
   );
 };
