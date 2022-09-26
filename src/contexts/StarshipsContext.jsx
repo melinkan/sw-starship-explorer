@@ -1,10 +1,4 @@
-import {
-  createContext,
-  useState,
-  useContext,
-  useEffect,
-  useCallback,
-} from "react";
+import { createContext, useState, useContext, useEffect, useRef } from "react";
 import axios from "axios";
 
 export const StarshipsContext = createContext();
@@ -16,6 +10,7 @@ export const StarshipsProvider = (props) => {
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState("");
   const [count, setCount] = useState(0);
+  const firstUpdate = useRef(true);
 
   const fetchStarships = () => {
     return axios.get("https://swapi.dev/api/starships", {
@@ -27,18 +22,16 @@ export const StarshipsProvider = (props) => {
   };
 
   useEffect(() => {
+    if (firstUpdate.current) {
+      firstUpdate.current = false;
+      return;
+    }
+
     fetchStarships().then(({ data }) => {
       setStarships((prev) => [...prev, ...data.results]);
       setCount(data.count);
     });
-  }, [page]);
-
-  useEffect(() => {
-    fetchStarships().then(({ data }) => {
-      setStarships(data.results);
-      setCount(data.count);
-    });
-  }, [search]);
+  }, [page, search]);
 
   return (
     <StarshipsContext.Provider

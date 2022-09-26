@@ -5,9 +5,11 @@ import starWarsLogo from "../../assets/star-wars-logo.png";
 import { useStarshipsContext } from "../../contexts/StarshipsContext";
 
 export const Header = () => {
-  const { search, setSearch } = useStarshipsContext();
+  const { search, setSearch, setStarships, setPage } = useStarshipsContext();
 
   const handleChange = (event) => {
+    setPage(1);
+    setStarships([]);
     setSearch(event.target.value);
   };
 
