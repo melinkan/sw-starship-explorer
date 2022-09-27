@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { starshipAssets } from "../../imageRoutes";
 import styles from "./Card.module.scss";
 
@@ -18,9 +19,11 @@ export const Card = ({ item }) => {
           <h3>{item.model}</h3>
         </div>
         <div className={styles.color}>
-          <h3>{item.hyperdrive_rating}</h3>
+          <h3>Hyperdrive Rating: {item.hyperdrive_rating}</h3>
         </div>
-        <a href="#">View Details</a>
+        <Link to={"starships/" + item.name.split(" ").join("-")}>
+          View Details
+        </Link>
       </div>
     </div>
   );
