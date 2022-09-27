@@ -12,7 +12,7 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="characters/:id" element={<Detail />} />
+          <Route path="starships/:name" element={<Detail key={"detail"} />} />
         </Routes>
       </StarshipsProvider>
     </BrowserRouter>
