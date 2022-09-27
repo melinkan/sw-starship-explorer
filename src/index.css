@@ -29,6 +29,8 @@ ul {
 .container {
   max-width: 1200px;
   margin: 0 auto;
+  position: relative;
+  z-index: 5;
 }
 
 .img-fluid {
