@@ -1,0 +1,56 @@
+.base {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 4rem;
+  padding-top: 4rem;
+
+  .textWrapper {
+    background: rgba(84, 84, 84, 0.12);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    box-shadow: 0 4px 30px rgba(20, 94, 189, 0.45);
+    backdrop-filter: blur(1.5px);
+    margin-right: 3rem;
+    padding: 2rem;
+
+    .title {
+      font-size: 2rem;
+      font-weight: 600;
+      padding-bottom: 1rem;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid #fff;
+      line-height: 1.5;
+    }
+
+    .subTitle {
+      font-size: 1.5rem;
+      font-weight: 400;
+      margin-bottom: 1rem;
+      line-height: 1.5;
+    }
+
+    .property {
+      color: rgb(190, 190, 190);
+    }
+  }
+
+  .imageWrapper {
+    animation: float 6s ease-in-out infinite;
+
+    img {
+      filter: drop-shadow(0px 10px 25px #ffffff50);
+    }
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translatey(0px);
+  }
+  50% {
+    transform: translatey(-40px);
+  }
+  100% {
+    transform: translatey(0px);
+  }
+}
