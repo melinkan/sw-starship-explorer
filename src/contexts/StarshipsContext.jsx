@@ -10,7 +10,6 @@ export const StarshipsProvider = (props) => {
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState("");
   const [count, setCount] = useState(0);
-  const firstUpdate = useRef(true);
 
   const fetchStarships = () => {
     return axios.get("https://swapi.dev/api/starships", {
@@ -22,11 +21,6 @@ export const StarshipsProvider = (props) => {
   };
 
   useEffect(() => {
-    if (firstUpdate.current) {
-      firstUpdate.current = false;
-      return;
-    }
-
     fetchStarships().then(({ data }) => {
       setStarships((prev) => [...prev, ...data.results]);
       setCount(data.count);
