@@ -13,7 +13,7 @@ export const Home = () => {
   };
 
   return (
-    <div className="container ">
+    <div className="container pb-50">
       <CardList />
       {!isLastPage && count > 10 && (
         <Button onClick={handleLoadMore}>Load More</Button>

@@ -40,7 +40,7 @@ export const StarshipDetail = ({ starship }) => {
         </p>
       </div>
       <div className={styles.imageWrapper}>
-        <img src={image?.path} />
+        <img className="img-fluid" src={image?.path} />
       </div>
     </div>
   );

@@ -9,6 +9,10 @@
   vertical-align: baseline;
 }
 
+:root {
+  --container-padding: 40px;
+}
+
 html,
 body,
 #root {
@@ -25,9 +29,10 @@ ol,
 ul {
   list-style: none;
 }
-
 .container {
-  max-width: 1200px;
+  max-width: 1280px;
+  padding-right: var(--container-padding);
+  padding-left: var(--container-padding);
   margin: 0 auto;
   position: relative;
   z-index: 5;
@@ -37,4 +42,22 @@ ul {
   display: block;
   width: 100%;
   height: auto;
+}
+
+.pb-50 {
+  padding-bottom: 50px;
+}
+
+/* Tablet */
+@media screen and (max-width: 768px) {
+  :root {
+    --container-padding: 20px;
+  }
+}
+
+/* Mobile */
+@media screen and (max-width: 576px) {
+  :root {
+    --container-padding: 10px;
+  }
 }

@@ -43,6 +43,31 @@
   }
 }
 
+@media screen and (max-width: 768px) {
+  .base {
+    grid-template-columns: 1fr;
+    grid-gap: 0;
+    padding: 0;
+    padding-bottom: 4rem;
+
+    .textWrapper {
+      margin-right: 0;
+
+      .title {
+        font-size: 1.5rem;
+      }
+
+      .subTitle {
+        font-size: 1rem;
+      }
+    }
+
+    .textWrapper {
+      order: 1;
+    }
+  }
+}
+
 @keyframes float {
   0% {
     transform: translatey(0px);
