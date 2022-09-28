@@ -5,12 +5,16 @@ import starWarsLogo from "../../assets/star-wars-logo.png";
 import { useStarshipsContext } from "../../contexts/StarshipsContext";
 
 export const Header = () => {
-  const { search, setSearch, setStarships, setPage } = useStarshipsContext();
+  const { search, setSearch, setPage } = useStarshipsContext();
 
   const handleChange = (event) => {
     setPage(1);
-    setStarships([]);
     setSearch(event.target.value);
+  };
+
+  const handleClick = () => {
+    setPage(1);
+    setSearch("");
   };
 
   return (
@@ -24,15 +28,20 @@ export const Header = () => {
           <input
             id="search"
             name="search"
-            className={styles.form__input}
+            className={styles.input}
             type="text"
             placeholder=" "
             value={search}
             onChange={handleChange}
           />
-          <label htmlFor="email" className={styles.form__label}>
+          <label htmlFor="email" className={styles.label}>
             Search
           </label>
+          {!!search && (
+            <button onClick={handleClick} className={styles.button}>
+              X
+            </button>
+          )}
         </div>
       </div>
     </header>

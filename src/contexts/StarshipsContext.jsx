@@ -25,7 +25,14 @@ export const StarshipsProvider = (props) => {
       setStarships((prev) => [...prev, ...data.results]);
       setCount(data.count);
     });
-  }, [page, search]);
+  }, [page]);
+
+  useEffect(() => {
+    fetchStarships().then(({ data }) => {
+      setStarships(data.results);
+      setCount(data.count);
+    });
+  }, [search]);
 
   return (
     <StarshipsContext.Provider
